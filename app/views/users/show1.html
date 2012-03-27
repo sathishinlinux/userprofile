@@ -1,0 +1,125 @@
+<body bgcolor="#E6E6FA">
+   
+
+  <div class="clear">&nbsp;</div> 
+  <div class="grid_4 pull_1"  style = " border: 1px solid black; border-color:#C8E2E3;">
+    <div id="profile_name" style ="color:#334367;text-align:center;font-size:10px;">    
+     <%=best_in_place @user, :name, :type => :input , :html_attrs => {"size" => "6"}%>,
+     <%=best_in_place @user, :genre, :type => :input ,:html_attrs => {"size" => "6"}%>,
+     <%=best_in_place @user, :location, :type => :input, :html_attrs => {"size" => "6"}%>.<br>
+    </div>
+    <div id="profile_image" style="padding-left:10px;">
+    <center><%=link_to image_tag @user.avatar.url(:thumb) %></center>
+    </div>
+
+    <div id="profile_message" style = "border:1px solid black;border-color:#C8E2E3;text-align:center;font-size:12px">
+        Message | + Connections
+    </div>
+    <table style = "font-size:12px"><tr><td>*services listed here</td><td> *in a table</td></tr>
+        <tr><td>*as bullet points</td><td>*veryneatly</td></tr>
+    </table>
+    <div id="band_members" style = "border:1px solid black;border-color:#C8E2E3;">
+    <table style = "font-size:12px">
+      <th><u>BandMembers</u></th>
+      <th>|Connections</th>
+      <tr><td>BandMembers</td></tr>
+       <% @user_all.each do |user|%>
+          <%if user != @user %>
+         <tr>
+         <td><%=link_to image_tag(user.avatar.url(:thumb),:size => "70x50"),user %></td>
+         <td style = "padding :5px;"><br>
+           <%=best_in_place user, :name, :html_attrs => {"size" => "6"} %>/<br>
+          <%=best_in_place user,:genre,:html_attrs => {"size" => "6"}%></td>
+        </tr>  
+        <%end%>    
+        <% end %>
+        
+    </table>
+    </div>
+    
+  </div>
+  <div class="grid_7 pull_1" >
+    <center>
+        <%=link_to "About","#", {:style=>'color:rgb(47, 150, 161);text-decoration:none;', :id => "about_id"} %>|
+        <%=link_to "Portfolio","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;', :id => "portfolio_id"}%>|
+        <%=link_to "Ziqqu Report","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;', :id => "report_id"}%>       
+    </center>
+    <div id ="about_div" style ="width: 450px; height:400px; border: 1px solid black;border-color:#C8E2E3;font-size:12px; font-color:blue;bgcolor:#E6E6FA;" >
+
+      <div id="text_box"  style ="width: 450px;font-family:arial,sans-serif;">
+        <% @user.posts.each do |post| %>
+          <h4><%= post.title %></h4>
+          <p style = "padding-left:20px;font-family:'Times New Roman',Georgia,Serif;" ><%= post.description %><br>
+          comments: 0  | Like </p><hr>
+
+        <%end%>
+      </div>
+      <div id="add_another_topic">
+        <h4><%=link_to "AddAnotherTopic","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;', :id => "add_topic"}%></h4>
+        <br><br>
+      </div>
+    </div>
+    <div id ="portfolio_div" style ="width: 450px; height:400px; border: 1px solid black;border-color:#C8E2E3;font-size:12px; font-color:blue;display:none;">
+       <%= image_tag "/assets/ziqqu_portfolio.png", :size => "440x400" %>              
+
+    </div>
+    <div id ="report_div" style ="width: 450px; height:400px; border: 1px solid black;border-color:#C8E2E3;font-size:12px; font-color:blue;display:none;">
+       <%= image_tag "/assets/ziqqu_report.png", :size => "440x400" %>     
+
+    </div>
+  </div>
+  <div class="grid_4" >
+    <table style="font-size:14px;">
+      <th><%=link_to "Music","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;',:id => "music_click"}%>|</th>
+      <th><%=link_to "Photos","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;',:id => "photos_click"}%>|</th>
+      <th><%=link_to "videos","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;',:id => "video_link"}%>|</th>
+      <th><%=link_to "Touring/events","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;',:id => "event_click"}%></th>
+    </table>
+    <div id ="side_bar" style ="width: 280px; height:400px; border: 1px solid black;border-color:#C8E2E3;font-size:12px; font-color:blue;">
+        <div id="user_musics" style="font-size:14px;width:300px;">
+          <%= link_to "Play All","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;'}%>|
+          <%= link_to "+Playlist","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;'} %>|
+          <%= link_to "Albums","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;'} %><br><br>
+          <p style ="padding:20px;">Loading Music........</p>
+        </div>
+        <div id ="user_images" style ="font-size:14px;width:300px;display:none;">
+            <%= link_to "Albums","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;'} %>|
+            <%= link_to "Most Viewed","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;'} %>|
+            <%= link_to "Highest Rated","#" ,{:style=>'color:rgb(47, 150, 161);text-decoration:none;'}%><br><br>
+        <table style ="font-size:14px; width:300px;">
+          <tr>  
+           <div id="gallery">
+            <% @user.assets.each do|asset|  %>               
+            <%= link_to image_tag(asset.asset(:thumb),:size => "80x60"), asset.asset.url(:large) unless asset.asset.nil? %>
+            <%end%>          
+    </div>
+       </tr>
+        </table >
+      </div>
+      <div id ="user_videos" style ="font-size:14px;width:300px;display:none;">
+          <%= link_to "Most Viewed","#" ,{:style=>'color:rgb(47, 150, 161);text-decoration:none;'}%>|
+          <%= link_to "Highest Rated","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;'} %><br><br>
+        <table style ="width:300px;"><tr>
+          <% @client_user.videos.each do |video|%> 
+
+            <%=link_to image_tag(video.thumbnails[1].url,:size => "80x60"),"#",:class => "youtubeLink",:id=> "#{video.unique_id}"%>
+          <%end%>
+        </tr></table> 
+      </div>
+      <div id="user_events" style="font-size:14px;width:300px;display:none;">
+      
+            <%= link_to "Calender","#" ,{:style=>'color:rgb(47, 150, 161);text-decoration:none;'}%>|
+            <%= link_to "Booking","#",{:style=>'color:rgb(47, 150, 161);text-decoration:none;'} %><br><br>
+            <p style ="padding:20px;">Loading Events........</p>
+      
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

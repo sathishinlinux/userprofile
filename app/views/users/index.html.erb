@@ -1,0 +1,16 @@
+<h1>Listing users</h1>
+<table>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to "#{user.name}", user %></td>
+
+    </tr>
+    <!--<td><%# link_to 'Edit', edit_user_path(user) %></td>
+    <td><%# link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td> -->
+  
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_user_path %>

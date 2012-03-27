@@ -1,0 +1,12 @@
+ <%=form_for "post_object" do |post_fields|%>
+   <p>
+     <%= post_fields.text_field :title%>
+  </p>    
+  <p>
+     <%= post_fields.text_area :description%>
+  </p>
+  <p>
+     <%= post_fields.hidden_field  :user_id%>
+  </p>
+      <%= post_fields.submit %>
+ <%end%>
