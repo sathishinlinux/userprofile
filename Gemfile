@@ -24,6 +24,10 @@ gem 'jquery-rails'
 gem 'best_in_place'
 gem 'paperclip'
 gem 'youtube_it'
+gem 'tinymce-rails', :git => 'git://github.com/spohlenz/tinymce-rails.git'
+gem 'koala'
+gem 'oauth'
+gem 'twitter'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -1,5 +1,5 @@
 ProfileZiqqu::Application.routes.draw do
-  
+match "users/edit_post"  => "users#edit_post"
 match "users/add_post" => "users#add_post"
   resources :users
 	root :to => "users#index"

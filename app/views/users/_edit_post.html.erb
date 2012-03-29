@@ -13,6 +13,8 @@ tinyMCE.init({
         theme_advanced_statusbar_location : "bottom",
         theme_advanced_resizing : true,
 
+        //tinyMCE.activeEditor.getContent({format : 'raw'});
+
         // Skin options
         skin : "o2k7",
         skin_variant : "black",
@@ -30,20 +32,23 @@ tinyMCE.init({
         
 });
 </script>
+
+
+
 <div id="user_post", style = "width:200; height:300;">
 
  <%=form_for "post_object" do |post_fields|%>
    <p>
     <h4><em>Title</em></h4>
-     <%= post_fields.text_field :title, :size => '30'%>
+     <%= post_fields.text_field :title, :size => '30', :value => post.title%>
   </p>    
-  <p>
+   <p>
     <h4><em>content</em></h4>
-     <%= post_fields.text_area :description,:cols => '40' ,:rows => '18'%>
+     <%= post_fields.text_area :description,:cols => '40' ,:rows => '18',:value => post.description%>
   </p>
   <p>
-     <%= post_fields.hidden_field  :user_id, :value => user%>
+     <%= post_fields.hidden_field  :user_id, :value => post.user_id%>
   </p>
-      <%= post_fields.submit "save post" %>
- <%end%>
+      <%= post_fields.submit "save post"%>
+  <%end%>
 </div>

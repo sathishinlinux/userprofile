@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     @user_posts = @user.posts.find(:all)
     @client = YouTubeIt::Client.new(:dev_key => "AI39si6g5PLD2IWCBWBoqcZPdQ2Wo3YkQ_bX6i363THySiqqKmtxRfw6SEsyixMksqq4XWkooWeohleo7FdUfNwdZfykHUIWlg")
     @client_user ||= @client.videos_by(:user => @user.youtube_username.to_s)
+
+   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -88,12 +90,35 @@ class UsersController < ApplicationController
   end
   def add_post
       if !params[:post_object].nil?
-
-         render :text => params[:post_object]
+          logger.info("#{[:post_object]}")
+          if params[:post_object][:title] == '' || params[:post_object][:description] == '' || params[:post_object][:user_id] == ''
+             redirect_to :action => "show" , :id =>  params[:post_object][:user_id]
+          else
+              Post.create(params[:post_object])
+              redirect_to :action => "show" , :id =>  params[:post_object][:user_id]
+            end
       else
-          
-         render :partial => 'add_post', :locals => {:post_object => Post.new}
+          @user = params[:server]
+         render :partial => 'add_post', :locals => {:user => @user.to_i}
 
-        end
+     end
+    
+  end
+  def edit_post
+    if !params[:post_object].nil?
+        if params[:post_object][:title] == '' || params[:post_object][:description] == '' || params[:post_object][:user_id] == ''
+            redirect_to :action => "show" , :id =>  params[:post_object][:user_id]
+          else
+            post = Post.find_by_id(session[:post])
+            post.update_attributes(params[:post_object])
+           redirect_to :action => "show" , :id =>  params[:post_object][:user_id]
+
+            end
+      else
+          server = params[:server]
+          session[:post] = Post.find(server)
+          render :partial => "edit_post" ,:locals => {:post => session[:post] }
+     end
+   
   end
 end

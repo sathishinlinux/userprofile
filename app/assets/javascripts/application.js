@@ -15,9 +15,13 @@
 
 //= require jquery-ui
 
+//= require tinymce
+
 //= require jquery_ujs
 
+
 //= require mojo
+
 
 //= require jquery.lightbox
  

@@ -7,8 +7,7 @@ ProfileZiqqu::Application.configure do
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
-
+   config.whiny_nils = true
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -33,5 +32,5 @@ ProfileZiqqu::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  #config.assets.debug = true
 end
